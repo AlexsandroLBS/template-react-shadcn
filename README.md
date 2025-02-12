@@ -8,7 +8,7 @@ Este repositório é um **template básico** para iniciar projetos React com Typ
 Você pode criar um novo projeto utilizando este template com o comando `degit`. Basta rodar o seguinte comando:
 
 ```bash
-npx degit seu-usuario/my-react-template novo-projeto
+npx degit seu-usuario/template-react-shadcn <nome-novo-projeto>
 ```
 
 Onde `seu-usuario` é o seu nome de usuário no GitHub e `my-react-template` é o nome do repositório do template. O comando irá copiar todos os arquivos para a pasta `novo-projeto` (ou outro nome que você escolher).
