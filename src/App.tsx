@@ -1,22 +1,33 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from '@/context/ThemeProvider';
+import { AppContextProvider } from './context/AppContext';
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { ptBR } from '@mui/x-date-pickers/locales';
+import { instanceI18next } from './lib/i18n';
+import router from './router';
+
 import '@/index.css';
 
 const queryClient = new QueryClient();
 
+instanceI18next();
+
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <Router>
-          <Routes>
-            {/* <Route path="/" element={<HomePage />} />
-            <Route path="*" element={<NotFoundPage />} /> */}
-          </Routes>
-        </Router>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <LocalizationProvider 
+      dateAdapter={AdapterDayjs} 
+      localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
+    >
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <AppContextProvider>
+            <RouterProvider router={router} />
+          </AppContextProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </LocalizationProvider>
   );
 }
 
